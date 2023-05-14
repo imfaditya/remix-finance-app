@@ -1,4 +1,7 @@
-function PricingPlan({ title, price, perks, icon }) {
+import type { pricingPlan } from "~/routes/pricing";
+
+
+function PricingPlan({ title, price, perks, icon } : pricingPlan) {
   const Icon = icon;
   return (
     <article>

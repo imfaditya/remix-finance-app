@@ -3,13 +3,15 @@ import { FaTrophy, FaHandshake } from 'react-icons/fa';
 
 import PricingPlan from '~/components/marketing/PricingPlan';
 
-const PRICING_PLANS: {
-  id: string,
+export type pricingPlan = {
+  id?: string,
   title: string,
   price: string,
   perks: string[],
-  icon: IconType
-}[] = [
+  icon: IconType,
+}
+
+const PRICING_PLANS: pricingPlan[] = [
   {
     id: 'p1',
     title: 'Basic',

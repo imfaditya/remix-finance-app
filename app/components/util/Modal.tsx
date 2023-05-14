@@ -1,4 +1,6 @@
-function Modal({ children, onClose }) {
+import type { ReactNode } from "react";
+
+function Modal({ children, onClose } : { children: ReactNode, onClose?: () => void }) {
   return (
     <div className="modal-backdrop" onClick={onClose}>
       <dialog

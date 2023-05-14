@@ -1,6 +1,7 @@
 import { useMemo } from 'react';
+import type { expenses } from '~/routes/expenses';
 
-function calculateSummaryStatistics(expenses) {
+function calculateSummaryStatistics(expenses: expenses[]) {
   const amounts = expenses.map((expense) => +expense.amount);
   const maxAmount = Math.max(...amounts);
   const minAmount = Math.min(...amounts);
@@ -10,7 +11,7 @@ function calculateSummaryStatistics(expenses) {
   return { minAmount, maxAmount, sum, mean };
 }
 
-function ExpenseStatistics({ expenses }) {
+function ExpenseStatistics({ expenses } : { expenses: expenses[] }) {
   const { minAmount, maxAmount, sum, mean } = useMemo(
     () => calculateSummaryStatistics(expenses),
     [expenses]

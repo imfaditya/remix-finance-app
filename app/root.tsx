@@ -9,6 +9,7 @@ import {
 } from "@remix-run/react";
 import sharedStyle from '~/styles/shared.css';
 import type { V2_MetaFunction } from "@remix-run/node";
+import MainHeader from "./components/navigation/MainHeader";
 
 export const meta: V2_MetaFunction = () => {
   return [
@@ -36,6 +37,7 @@ export default function App() {
         <Links />
       </head>
       <body>
+        <MainHeader />
         <Outlet />
         <ScrollRestoration />
         <Scripts />
