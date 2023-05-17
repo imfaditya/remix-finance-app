@@ -1,5 +1,5 @@
-export default function ExpensesRawPage() {
-  return (
-    <h1>Expenses Raw Page</h1>
-  )
+export function loader() {
+  return {
+    tes: 'test'
+  }
 }
