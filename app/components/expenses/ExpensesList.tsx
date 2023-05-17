@@ -7,7 +7,7 @@ function ExpensesList({ expenses }: { expenses: expenses[] }) {
       {expenses.map((expense) => (
         <li key={expense.id}>
           <ExpenseListItem
-            // id={expense.id}
+            id={expense.id}
             title={expense.title}
             amount={expense.amount}
             // date={expense.date}
