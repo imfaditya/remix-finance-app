@@ -40,12 +40,10 @@ export default function PricingPage() {
               price={plan.price}
               perks={plan.perks}
               icon={plan.icon}
-            />
+              />
           </li>
         ))}
       </ol>
     </main>
   );
 }
-
-export function meta() {}
