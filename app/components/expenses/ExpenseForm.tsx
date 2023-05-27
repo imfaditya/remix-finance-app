@@ -2,6 +2,7 @@ import {
   Form,
   Link, 
   useActionData,
+  useLoaderData,
   useNavigation, 
   // useSubmit
 } from "@remix-run/react";
@@ -9,7 +10,9 @@ import {
 function ExpenseForm() {
   const today: string = new Date().toISOString().slice(0, 10); // yields something like 2023-09-10
   const validationErrors = useActionData<object>();
+  const expense = useLoaderData();
   const isSubmitting = useNavigation().state !== 'idle';
+  console.log(expense);
 
   // const submit = useSubmit();
   // const handleSubmit = (event: React.SyntheticEvent) => {
@@ -18,6 +21,16 @@ function ExpenseForm() {
   //     method: "post",
   //   })
   // }
+
+  const defaultValues: {
+    title: string,
+    amount: number,
+    date: string
+  } = {
+    title: expense?.title || "",
+    amount: expense?.amount || 0,
+    date: expense?.date || "",
+  }
 
   return (
     <Form 
@@ -28,7 +41,7 @@ function ExpenseForm() {
     >
       <p>
         <label htmlFor="title">Expense Title</label>
-        <input type="text" id="title" name="title" required maxLength={30} />
+        <input type="text" id="title" name="title" required maxLength={30} defaultValue={defaultValues.title} />
       </p>
 
       <div className="form-row">
@@ -40,12 +53,13 @@ function ExpenseForm() {
             name="amount"
             min="0"
             step="0.01"
+            defaultValue={defaultValues.amount}
             required
           />
         </p>
         <p>
           <label htmlFor="date">Date</label>
-          <input type="date" id="date" name="date" max={today} required />
+          <input type="date" id="date" name="date" max={today} required defaultValue={defaultValues.date ? defaultValues.date.slice(0, 10) : ""}/>
         </p>
       </div>
       {

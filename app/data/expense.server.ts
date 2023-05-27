@@ -12,3 +12,22 @@ export async function addExpense(expenseData: { title: string, amount: string, d
     throw error;
   }
 }
+
+export async function getExpenses() {
+  try {
+    const expenses = await prisma.expense.findMany({orderBy: {date: 'desc'}});
+    return expenses;
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+}
+
+export async function getExpense(id: string) {
+  try {
+    const expense = await prisma.expense.findFirst({where: {id: id}});
+    return expense;
+  } catch (error) {
+    throw error;
+  }
+}

@@ -1,5 +1,5 @@
 import ExpenseListItem from './ExpenseListItem';
-import type { expenses } from '~/routes/expenses';
+import type { expenses } from '~/routes/_app.expenses';
 
 function ExpensesList({ expenses }: { expenses: expenses[] }) {
   return (
