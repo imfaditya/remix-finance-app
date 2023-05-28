@@ -22,19 +22,21 @@ export default function AddExpensesPage() {
 }
 
 export async function action({ request } : ActionArgs) {
-  const formData = await request.formData();
-  const {title, amount, date} = Object.fromEntries(formData);
+  if (request.method === 'POST') {
+    const formData = await request.formData();
+    const {title, amount, date} = Object.fromEntries(formData);
 
-  if(typeof title !== "string" || typeof amount !== "string" || typeof date !== "string") {
-    return redirect("/");
+    if(typeof title !== "string" || typeof amount !== "string" || typeof date !== "string") {
+      return redirect("/");
+    }
+
+    try {
+      validateExpenseInput({ title, amount, date });
+    } catch (error) {
+      return error;
+    }
+
+    await addExpense({ title, amount, date });
+    return redirect("/expenses");
   }
-
-  try {
-    validateExpenseInput({ title, amount, date });
-  } catch (error) {
-    return error;
-  }
-
-  await addExpense({ title, amount, date });
-  return redirect("/expenses");
 }
