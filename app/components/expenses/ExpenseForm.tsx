@@ -2,17 +2,19 @@ import {
   Form,
   Link, 
   useActionData,
-  useLoaderData,
-  useNavigation, 
+  useMatches,
+  useNavigation,
+  useParams, 
   // useSubmit
 } from "@remix-run/react";
 
 function ExpenseForm() {
   const today: string = new Date().toISOString().slice(0, 10); // yields something like 2023-09-10
   const validationErrors = useActionData<object>();
-  const expense = useLoaderData();
+  const expenses = useMatches().find((match) => match.id === 'routes/_app.expenses');
+  const expense = expenses?.data.find((expense: any) => expense.id === expenses.params.id);
   const isSubmitting = useNavigation().state !== 'idle';
-  console.log(expense);
+  console.log("expense: ", expense);
 
   // const submit = useSubmit();
   // const handleSubmit = (event: React.SyntheticEvent) => {

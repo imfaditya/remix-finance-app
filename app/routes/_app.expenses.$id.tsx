@@ -1,9 +1,9 @@
-import type { LoaderArgs } from "@remix-run/node";
+// import type { LoaderArgs } from "@remix-run/node";
 import type { NavigateFunction } from "@remix-run/react";
 import { useNavigate } from "@remix-run/react";
 import ExpenseForm from "~/components/expenses/ExpenseForm";
 import Modal from "~/components/util/Modal";
-import { getExpense } from "~/data/expense.server";
+// import { getExpense } from "~/data/expense.server";
 
 export default function UpdateExpensesPage() {
   const navigate: NavigateFunction = useNavigate();
@@ -19,11 +19,6 @@ export default function UpdateExpensesPage() {
   )
 }
 
-export async function loader({ params }: LoaderArgs) {
-  return new Promise((resolve) => {
-    setTimeout(async () => {
-      const expense = await getExpense(params.id || "");
-      resolve(expense);
-    }, 5000);
-  });
-}
+// export async function loader({ params }: LoaderArgs) {
+//   const expense = await getExpense(params.id || "");
+// }
