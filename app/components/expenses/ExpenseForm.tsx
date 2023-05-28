@@ -4,7 +4,7 @@ import {
   useActionData,
   useMatches,
   useNavigation,
-  useParams, 
+  // useParams, 
   // useSubmit
 } from "@remix-run/react";
 
@@ -36,7 +36,7 @@ function ExpenseForm() {
 
   return (
     <Form 
-      method="post" 
+      method={expense ? "patch" : "post"} 
       className="form" 
       id="expense-form" 
       // onSubmit={handleSubmit}
